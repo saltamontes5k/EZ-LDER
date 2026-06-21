@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">EZ LDer</string>
+    <string name="dream_diary">DREAM DIARY</string>
+    <string name="dream_parse">DREAM PARSE</string>
+    <string name="export_csv">EXPORT CSV</string>
+    <string name="title_hint">Dream Title</string>
+    <string name="body_hint">Describe your dream...</string>
+    <string name="save">SAVE</string>
+    <string name="voice_toggle">VOICE</string>
+    <string name="reality_check_1">Consider your current conditions — how realistic are they? Look closely at the room, your hands, the text. Are you dreaming?</string>
+    <string name="reality_check_2">What do you remember from the past few minutes? How did you get here? Does it make sense?</string>
+    <string name="reality_check_totem">TOTEM ACTIVE — tap anywhere to stop the sound</string>
+    <string name="parse_selected">PARSE SELECTED</string>
+    <string name="select_date">Select a date</string>
+    <string name="saved">Dream saved!</string>
+    <string name="parsing">Parsing dream themes...</string>
+    <string name="no_dreams">No dreams saved yet.</string>
+    <string name="export_done">CSV exported!</string>
+    <string name="csv_filename">ezlder_dreams.csv</string>
+    <string name="copy_clipboard">COPY</string>
+    <string name="copied">Copied to clipboard!</string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_medium">
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:background="@color/bg_primary"
+        android:hint="@string/title_hint"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        android:textSize="@dimen/body_text_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editBody"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:layout_weight="1"
+        android:background="@color/bg_primary"
+        android:gravity="top"
+        android:hint="@string/body_hint"
+        android:padding="@dimen/padding_small"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        android:textSize="@dimen/body_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnVoice"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="@dimen/padding_small"
+            android:layout_weight="1"
+            android:background="@color/voice_bg"
+            android:text="@string/voice_toggle"
+            android:textColor="@color/button_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:background="@color/save_bg"
+            android:text="@string/save"
+            android:textColor="@color/button_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnViewPrevious"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@color/button_bg"
+        android:text="VIEW PREVIOUS"
+        android:textColor="@color/button_text"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
