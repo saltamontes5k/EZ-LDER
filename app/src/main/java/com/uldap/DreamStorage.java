@@ -48,6 +48,13 @@ public class DreamStorage {
         return list;
     }
 
+    public static void deleteDream(Context ctx, String id) {
+        File dir = getDreamDir(ctx);
+        File file = new File(dir, "dream_" + id + ".txt");
+        if (file.exists()) file.delete();
+        rebuildIndex(ctx);
+    }
+
     public static void updateDream(Context ctx, DreamEntry entry) throws IOException {
         File dir = getDreamDir(ctx);
         File file = new File(dir, "dream_" + entry.id + ".txt");
@@ -98,6 +105,70 @@ public class DreamStorage {
             csv.append(csvEscape(e.themes)).append("\n");
         }
         return csv.toString();
+    }
+
+    public static int importFromCsv(Context ctx, String csvText) {
+        if (csvText == null || csvText.trim().isEmpty()) return 0;
+        String[] lines = csvText.split("\n");
+        int count = 0;
+        for (int i = 1; i < lines.length; i++) {
+            String line = lines[i].trim();
+            if (line.isEmpty()) continue;
+            try {
+                List<String> fields = parseCsvLine(line);
+                if (fields.size() < 2) continue;
+                String date = fields.get(0).trim();
+                String title = fields.size() > 1 ? fields.get(1).trim() : "Imported";
+                String body = fields.size() > 2 ? fields.get(2).trim() : "";
+                String themes = fields.size() > 3 ? fields.get(3).trim() : "";
+                DreamEntry e = new DreamEntry(title, body);
+                if (!date.isEmpty()) {
+                    e.id = date.replace("-", "_") + "_" + System.currentTimeMillis();
+                    e.date = date;
+                }
+                e.themes = themes;
+                File dir = getDreamDir(ctx);
+                File file = new File(dir, "dream_" + e.id + ".txt");
+                FileWriter w = new FileWriter(file);
+                w.write(e.toJson());
+                w.close();
+                count++;
+            } catch (Exception ignored) {}
+        }
+        if (count > 0) rebuildIndex(ctx);
+        return count;
+    }
+
+    private static List<String> parseCsvLine(String line) {
+        List<String> fields = new ArrayList<>();
+        StringBuilder cur = new StringBuilder();
+        boolean inQuotes = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (inQuotes) {
+                if (c == '"') {
+                    if (i + 1 < line.length() && line.charAt(i + 1) == '"') {
+                        cur.append('"');
+                        i++;
+                    } else {
+                        inQuotes = false;
+                    }
+                } else {
+                    cur.append(c);
+                }
+            } else {
+                if (c == '"') {
+                    inQuotes = true;
+                } else if (c == ',') {
+                    fields.add(cur.toString());
+                    cur = new StringBuilder();
+                } else if (c != '\r') {
+                    cur.append(c);
+                }
+            }
+        }
+        fields.add(cur.toString());
+        return fields;
     }
 
     private static String csvEscape(String s) {

@@ -20,6 +20,7 @@ public class DreamDiaryActivity extends Activity
     private EditText editBody;
     private Button btnVoice;
     private Button btnSave;
+    private Button btnDelete;
     private Button btnViewPrevious;
 
     private SpeechHelper speechHelper;
@@ -37,6 +38,7 @@ public class DreamDiaryActivity extends Activity
         btnVoice = findViewById(R.id.btnVoice);
         btnSave = findViewById(R.id.btnSave);
         btnViewPrevious = findViewById(R.id.btnViewPrevious);
+        btnDelete = findViewById(R.id.btnDelete);
 
         realityCheck = new RealityCheckManager(this);
 
@@ -138,7 +140,32 @@ public class DreamDiaryActivity extends Activity
                             editTitle.setText(e.title);
                             editBody.setText(e.body);
                             editingEntryId = e.id;
+                            btnDelete.setVisibility(View.VISIBLE);
                             Toast.makeText(DreamDiaryActivity.this, "Editing dream from " + e.date, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("CANCEL", null)
+                    .show();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editingEntryId == null) return;
+                new AlertDialog.Builder(DreamDiaryActivity.this)
+                    .setTitle("DELETE DREAM?")
+                    .setMessage("Delete this dream entry from " + editingEntryId.substring(0, 10) + "?")
+                    .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            DreamStorage.deleteDream(DreamDiaryActivity.this, editingEntryId);
+                            Toast.makeText(DreamDiaryActivity.this, "Dream deleted", Toast.LENGTH_SHORT).show();
+                            editingEntryId = null;
+                            editTitle.setText("");
+                            editBody.setText("");
+                            btnDelete.setVisibility(View.GONE);
+                            finish();
                         }
                     })
                     .setNegativeButton("CANCEL", null)

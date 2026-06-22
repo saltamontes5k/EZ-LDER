@@ -64,6 +64,18 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="#FFCC3333"
+        android:text="DELETE THIS ENTRY"
+        android:textColor="@color/button_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <Button
         android:id="@+id/btnViewPrevious"
         android:layout_width="match_parent"
         android:layout_height="48dp"

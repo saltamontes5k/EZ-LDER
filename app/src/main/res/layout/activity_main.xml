@@ -1,58 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_medium">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:text="EZ LDer"
-        android:textColor="@color/highlight"
-        android:textSize="48sp"
-        android:textStyle="bold" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_medium">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Lucid Dream Assistant"
-        android:textColor="@color/text_secondary"
-        android:textSize="@dimen/body_text_size" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="16dp"
+            android:text="EZ LDer"
+            android:textColor="@color/highlight"
+            android:textSize="48sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnDiary"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:background="@color/button_bg"
-        android:text="@string/dream_diary"
-        android:textColor="@color/button_text"
-        android:textSize="@dimen/button_text_size"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Lucid Dream Assistant"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/body_text_size" />
 
-    <Button
-        android:id="@+id/btnParse"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:background="@color/button_bg"
-        android:text="@string/dream_parse"
-        android:textColor="@color/button_text"
-        android:textSize="@dimen/button_text_size"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btnDiary"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/button_bg"
+            android:text="@string/dream_diary"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnExport"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
-        android:background="@color/button_bg"
-        android:text="@string/export_csv"
-        android:textColor="@color/button_text"
-        android:textSize="@dimen/button_text_size"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btnParse"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/button_bg"
+            android:text="@string/dream_parse"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnExport"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/button_bg"
+            android:text="@string/export_csv"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnImport"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/accent"
+            android:text="IMPORT CSV"
+            android:textColor="@color/button_text"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>
