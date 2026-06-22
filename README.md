@@ -8,7 +8,7 @@ Big buttons, fast response, no bloat.
 
 - **Dream Diary** — write dreams, voice-to-text toggle (Android SpeechRecognizer), saves as JSON .txt files
 - **View Previous** — browse, edit, and update past entries
-- **Reality Checks** — left open 25s? Cycles through: "how realistic is this?" → "what do you remember?" → looping totem tone until tapped
+- **Reality Checks** — leave the diary open 25s: "how realistic is this?" → "what do you remember?" — two quick reality checks to build lucidity
 - **Dream Parser** — keyword-matches 16 common dream themes (falling, flying, chased, teeth, water, death, etc.) with percentage bars
 - **CSV Export** — save all dreams as CSV via Storage Access Framework or clipboard
 - **No dependencies** — pure Android Java, Holo theme, no third-party libraries

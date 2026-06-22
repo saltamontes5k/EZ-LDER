@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +24,6 @@ public class DreamDiaryActivity extends Activity
 
     private SpeechHelper speechHelper;
     private RealityCheckManager realityCheck;
-    private boolean totemActive;
     private boolean diaryActive;
     private String editingEntryId;
 
@@ -40,7 +38,7 @@ public class DreamDiaryActivity extends Activity
         btnSave = findViewById(R.id.btnSave);
         btnViewPrevious = findViewById(R.id.btnViewPrevious);
 
-        realityCheck = new RealityCheckManager(this, this);
+        realityCheck = new RealityCheckManager(this);
 
         speechHelper = new SpeechHelper(this, new SpeechHelper.SpeechCallback() {
             @Override
@@ -63,17 +61,6 @@ public class DreamDiaryActivity extends Activity
             @Override
             public void onListeningChanged(boolean listening) {
                 btnVoice.setText(listening ? "LISTENING..." : "VOICE");
-            }
-        });
-
-        findViewById(R.id.rootLayout).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN && totemActive) {
-                    realityCheck.onScreenTapped();
-                    return true;
-                }
-                return false;
             }
         });
 
@@ -213,11 +200,6 @@ public class DreamDiaryActivity extends Activity
                 .setPositiveButton("OK", null)
                 .setOnDismissListener(onDismiss)
                 .show();
-    }
-
-    @Override
-    public void setTotemActive(boolean active) {
-        totemActive = active;
     }
 
     @Override
