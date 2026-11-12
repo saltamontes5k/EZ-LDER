@@ -26,6 +26,7 @@ public class DreamDiaryActivity extends Activity
     private SpeechHelper speechHelper;
     private RealityCheckManager realityCheck;
     private boolean diaryActive;
+    private boolean browsingPrevious;
     private String editingEntryId;
 
     @Override
@@ -125,13 +126,15 @@ public class DreamDiaryActivity extends Activity
                     Toast.makeText(DreamDiaryActivity.this, "No previous dreams", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                browsingPrevious = true;
+                realityCheck.cancelTimer();
                 String[] items = new String[dreams.size()];
                 for (int i = 0; i < dreams.size(); i++) {
                     DreamEntry e = dreams.get(i);
                     String preview = e.body.length() > 40 ? e.body.substring(0, 40) + "..." : e.body;
                     items[i] = e.date + "  " + e.title + "\n" + preview;
                 }
-                new AlertDialog.Builder(DreamDiaryActivity.this)
+                AlertDialog picker = new AlertDialog.Builder(DreamDiaryActivity.this)
                     .setTitle("PREVIOUS DREAMS")
                     .setItems(items, new DialogInterface.OnClickListener() {
                         @Override
@@ -146,6 +149,13 @@ public class DreamDiaryActivity extends Activity
                     })
                     .setNegativeButton("CANCEL", null)
                     .show();
+                picker.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        browsingPrevious = false;
+                        if (diaryActive) realityCheck.startTimer();
+                    }
+                });
             }
         });
 
@@ -231,6 +241,6 @@ public class DreamDiaryActivity extends Activity
 
     @Override
     public boolean isDiaryActive() {
-        return diaryActive && !isFinishing();
+        return diaryActive && !browsingPrevious && !isFinishing();
     }
 }
